@@ -5,5 +5,4 @@ Link to some examples from Plot.ly - https://dash-gallery.plotly.host/Portal/
 
 How to install
 
-pip install dash
-pip install plotly
+pip install dash 
