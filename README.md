@@ -15,5 +15,5 @@ How to launch the app locally on your machine
 
 "source" / python app.py
 
-Gunicorn command on Azure web app settings
+Gunicorn command on Azure web app settings  
 gunicorn --bind=0.0.0.0 --timeout 600 app:server
