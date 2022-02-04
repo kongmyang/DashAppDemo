@@ -9,11 +9,19 @@ Created on Fri Dec  6 07:33:49 2019
 import dash
 import dash_core_components as dcc
 import dash_html_components as html
+import pandas as pd
+import numpy as np
 
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets)
 server = app.server
+
+data = pd.read_csv("data/gis_data.csv", header=0)
+
+dataFilter = data[["SALE_YEAR","SALESAMT"]]
+dataFilter = data[data["SALESAMT"]>0]
+dataFilter = dataFilter.groupby("SALE_YEAR").agg({"SALESAMT":np.mean}).reset_index()
 
 app.layout = html.Div(children=[
     html.H1(children='Hello Dash'),
@@ -27,11 +35,10 @@ app.layout = html.Div(children=[
         figure={
             #Would like the data to come from Data Lake or Azure SQL
             'data': [
-                {'x': [1, 2, 3], 'y': [4, 1, 2], 'type': 'bar', 'name': 'SF'},
-                {'x': [1, 2, 3], 'y': [2, 4, 5], 'type': 'bar', 'name': u'Montréal'},
+                {'x': dataFilter["SALE_YEAR"], 'y': dataFilter["SALESAMT"], 'type': 'bar', 'name': 'SF'},
             ],
             'layout': {
-                'title': 'Dash Data Visualization'
+                'title': 'AVG Home Prices in G-TOWN Dash Data Visualization'
             }
         }
     )
