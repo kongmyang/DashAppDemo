@@ -6,7 +6,7 @@ pandas
 numpy
 dash-renderer==1.2.2
 dash-table==4.5.1
-Flask==1.1.1
+Flask==2.3.2
 Flask-Compress==1.4.0
 future==0.18.2
 itsdangerous==1.1.0
